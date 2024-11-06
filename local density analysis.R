@@ -5,15 +5,7 @@
 # once from point A to point B, and again from point B to point A)
 
 distance_matrix <- function(location_data = locations, x = 1, y = 2){
-  distance_m <- matrix(nrow = nrow(location_data), ncol = nrow(location_data))
-
-  for (i in 1:nrow(location_data)) {
-    for (j in 1:nrow(location_data)) {
-      distance_m[i,j] <- sqrt((location_data[i,x] - location_data[j,x])^2 + 
-                        (location_data[i,y] - location_data[j,y])^2)
-    }
-  }
-  return(distance_m)
+  as.matrix(stats::dist(x = locations[,c(x,y)], method = "euclidean")) 
 }
 
 # =======================================================
