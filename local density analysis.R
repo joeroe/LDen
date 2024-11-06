@@ -26,8 +26,9 @@ local_counts <- function(location_data = locations, radius){
   type_list <- sort(unique(location_data$type))
   num_types <- length(type_list)
   neighbor_counts_per_type <- lapply(type_list, function(current_type) {
+    is_current_type <- locations$type == current_type
     apply(distance, 1, function(one_row) {
-      relevant_neighbors <- one_row[locations$type == current_type]
+      relevant_neighbors <- one_row[is_current_type]
       sum(relevant_neighbors <= radius)
     })
   })
