@@ -5,15 +5,7 @@
 # once from point A to point B, and again from point B to point A)
 
 distance_matrix <- function(location_data = locations, x = 1, y = 2){
-  distance_m <- matrix(nrow = nrow(location_data), ncol = nrow(location_data))
-
-  for (i in 1:nrow(location_data)) {
-    for (j in 1:nrow(location_data)) {
-      distance_m[i,j] <- sqrt((location_data[i,x] - location_data[j,x])^2 + 
-                        (location_data[i,y] - location_data[j,y])^2)
-    }
-  }
-  return(distance_m)
+  as.matrix(stats::dist(x = locations[,c(x,y)], method = "euclidean")) 
 }
 
 # =======================================================
@@ -27,51 +19,29 @@ distance_matrix <- function(location_data = locations, x = 1, y = 2){
 local_counts <- function(location_data = locations, radius){
 
   distance <- distance_matrix(location_data = location_data)
-  output <- mutate(location_data, radius = radius) 
-  
-  type_list <- unique(location_data$type)
-  type_list <- sort(type_list)
+  output <- location_data
+  output$radius <- radius
   
   # find the counts for artifacts of each type in the neighborhood of each point
-  for (n in 1:length(type_list)) {
-    current_type <- type_list[n]
-  
-    local_counts <- matrix(nrow = nrow(locations))
-    for (i in 1:nrow(distance)) {
-      in_distance <- 0
-      for (j in 1:ncol(distance)) {
-        if (locations$type[j] == current_type) {
-          if (distance[i,j] <= radius) {
-            in_distance <- in_distance + 1
-          }  
-        }
-      }
-      local_counts[i] <- in_distance
-    }
-    
- #this adds local counts for each type, one column at a time
-    output <- cbind(output, local_counts)
-    col_list <- colnames(output)
-    colnames(output) <- c(col_list[1:ncol(output) - 1], paste0("count_", as.character(type_list[n])))
+  type_list <- sort(unique(location_data$type))
+  num_types <- length(type_list)
+  neighbor_counts_per_type <- lapply(type_list, function(current_type) {
+    is_current_type <- locations$type == current_type
+    apply(distance, 1, function(one_row) {
+      relevant_neighbors <- one_row[is_current_type]
+      sum(relevant_neighbors <= radius)
+    })
+  })
 
-  }
-# add the local counts for total points in the neighborhood
-  local_counts <- matrix(nrow = nrow(location_data))
-  
-  for (i in 1:nrow(distance)) {
-    in_distance <- 0
-    for (j in 1:ncol(distance)) {
-      if (distance[i,j] <= radius) {
-        in_distance <- in_distance + 1
-      }
-    }
-    local_counts[i] <- in_distance
-  }
-  output <- cbind(output, local_counts)
-  
-  col_list <- colnames(output)
-  colnames(output) <- c(col_list[1:ncol(output) - 1], "count_total")
- 
+  # find the total count of neighboring artifacts
+  total_neighbour_count <- apply(distance, 1, function(one_row) {
+    sum(one_row <= radius)
+  })
+    
+  output <- cbind(output, neighbor_counts_per_type)
+  colnames(output)[(ncol(output)-num_types+1):ncol(output)] <- paste0("count_", as.character(type_list))
+  output$count_total <- total_neighbour_count
+
   return(output)
 }
 
