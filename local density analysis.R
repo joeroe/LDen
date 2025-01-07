@@ -5,7 +5,7 @@
 # once from point A to point B, and again from point B to point A)
 
 distance_matrix <- function(location_data = locations, x = 1, y = 2){
-  as.matrix(stats::dist(x = locations[,c(x,y)], method = "euclidean")) 
+  as.matrix(stats::dist(x = location_data[,c(x,y)], method = "euclidean")) 
 }
 
 # =======================================================
@@ -184,10 +184,13 @@ local_density_test <- local_density(radius = 2)
 #site area for Kintigh's example file "LDEN.csv = 154"
 #the site area for "AZ_A1020_BLM_point_plots.csv" = 2409
 
-global_density_test <- glb_density(site_area = 154)
+global_density_test <- glb_density(site_area = 2409)
 
 lda_test <- lda(locations, radius = 2, site_area = 154)
 
 #test with multiple radii
-lda_test <- lda(locations, radius = cbind(1,2,5), site_area = 154)
+lda_test <- lda(locations, radius = cbind(1, 2, 3, 4, 5, 6, 7, 8, 9 , 10), site_area = 2409)
+
+
+
 
