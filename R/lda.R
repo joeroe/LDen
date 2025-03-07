@@ -4,11 +4,14 @@
 #' all the types in the dataset. The local density coefficient from
 #' Type A to Type B is the mean density of points of Type B within
 #' the specified radius of points of Type A, divided by the global
-#' density of points of Type B (i.e., the number of points of Type B divided by the total area)
+#' density of points of Type B (i.e., the number of points of
+#' Type B divided by the total area)
 #'
 #' @inheritParams distance_matrix
-#' @param radius
-#' @param site_area
+#' @inheritParams local_counts
+#' @inheritParams glb_density
+#'
+#' @importFrom dplyr filter
 #'
 #' @return
 #' @export

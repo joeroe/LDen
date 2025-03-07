@@ -7,11 +7,11 @@
 #' location and type of each point, as well as the density of points of
 #' each type within the specified radius of each point.
 #'
-#' @seealso [local_count()]
+#' @seealso [local_counts()]
 #'
 #'
 #' @inheritParams distance_matrix
-#' @param radius
+#' @inheritParams local_counts
 #'
 #' @return
 #' @export

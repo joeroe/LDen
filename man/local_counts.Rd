@@ -14,7 +14,7 @@ local_counts(location_data, radius)
 \item{type}{Type of Evidence at location}
 }}
 
-\item{radius}{}
+\item{radius}{\emph{numeric}. The radius of what}
 }
 \description{
 Local_counts is a function to find the counts of points of different

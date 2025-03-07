@@ -14,6 +14,8 @@ lda(location_data, radius, site_area)
 \item{type}{Type of Evidence at location}
 }}
 
+\item{radius}{\emph{numeric}. The radius of what}
+
 \item{site_area}{}
 }
 \description{

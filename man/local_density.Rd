@@ -14,7 +14,7 @@ local_density(location_data, radius)
 \item{type}{Type of Evidence at location}
 }}
 
-\item{radius}{}
+\item{radius}{\emph{numeric}. The radius of what}
 }
 \description{
 \code{local_density()} is a function that calls the local_count function,

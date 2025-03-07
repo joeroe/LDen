@@ -8,10 +8,13 @@
 #' specified radius of each point.
 #'
 #' @inheritParams distance_matrix
+#' @param radius *numeric*. The radius of what
 #'
-#' @param radius
 #'
-#' @return
+#' @return a data.frame that includes the point location and
+#' type of each point, as well as counts (by type) of points within the
+#' specified radius of each point
+#'
 #' @export
 #'
 #' @examples
@@ -21,7 +24,9 @@
 #'
 local_counts <- function(location_data, radius) {
 
-  distance <- LDen:::distance_matrix(location_data = location_data)
+  stopifnot(is.numeric(radius))
+
+  distance <- LDen::distance_matrix(location_data = location_data)
   output <- location_data
   output$radius <- radius
 

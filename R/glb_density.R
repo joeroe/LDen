@@ -8,6 +8,8 @@
 #' @inheritParams distance_matrix
 #' @param site_area
 #'
+#' @importFrom dplyr filter
+#'
 #' @return
 #' @export
 #'
