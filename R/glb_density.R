@@ -17,13 +17,18 @@
 glb_density <- function(location_data, site_area) {
   type_list <- unique(location_data$type)
   type_list <- sort(type_list)
-  global_density <- matrix(nrow = length(type_list) + 1)
-  for (i in 1:length(type_list)) {
-    temp <- dplyr::filter(location_data, type == type_list[i])
-    global_density[i] <- nrow(temp) / site_area
+  calc_density <- function(artifact_type) {
+    temp <- dplyr::filter(location_data, type == artifact_type)
+    nrow(temp) / site_area
   }
+  
+  global_density <- sapply(type_list, FUN = calc_density)
+  
   global_density[length(type_list) + 1] <- nrow(location_data) / site_area
+  
+  global_density <-  as.data.frame(global_density)
   row.names(global_density) <- c(type_list, "total")
-
+  
   return(global_density)
 }
+
