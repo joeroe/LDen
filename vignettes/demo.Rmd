@@ -16,7 +16,6 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(LDen)
-library(dplyr)
 ```
 
 The data should be formatted as a data frame of artifact locations with x coordinates in the first column, y coordinates in the second, and artifact type in the third column.
