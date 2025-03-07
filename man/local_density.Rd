@@ -25,5 +25,5 @@ location and type of each point, as well as the density of points of
 each type within the specified radius of each point.
 }
 \seealso{
-\code{\link[=local_count]{local_count()}}
+\code{\link[=local_counts]{local_counts()}}
 }

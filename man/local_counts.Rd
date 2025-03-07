@@ -16,6 +16,11 @@ local_counts(location_data, radius)
 
 \item{radius}{\emph{numeric}. The radius of what}
 }
+\value{
+a data.frame that includes the point location and
+type of each point, as well as counts (by type) of points within the
+specified radius of each point
+}
 \description{
 Local_counts is a function to find the counts of points of different
 types within the local neighborhood of each point -- points are
