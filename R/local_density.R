@@ -21,31 +21,42 @@
 local_density <- function(location_data, radius) {
   counts <- local_counts(location_data, radius)
   local_densities <- counts
-  type_list <- unique(local_densities$type)
-  type_list <- sort(type_list)
 
-  # reduce the same-type counts and the total counts for
+  # prep a vector of columns needed in the following operations:
+  count_cols <- colnames(local_densities)
+  count_cols <- count_cols[grep("count", colnames(local_densities))]
+  count_cols <- count_cols[-which(count_cols == "count_total")]
+
+  # this part reduces the same-type counts and the total counts for
   # each point by 1 so that points don't count in calculating their
-  # own local densities
-  for (i in 1:nrow(local_densities)) {
-    local_densities[i,ncol(local_densities)] <- local_densities[i,ncol(local_densities)] - 1
-    for (j in 1:length(type_list))
-      if (local_densities$type[i] == type_list[j]) {
-        local_densities[i,j + 4] <- local_densities[i,j + 4] - 1
-      }
+  # own local densities:
+
+  # remove 1 from each total
+  local_densities$count_total <- local_densities$count_total - 1
+
+  # loop over all columns of counts
+  for (col in count_cols) {
+    # extract the type from the column name
+    this_type <- gsub("count_", "", col)
+    # get the index of all affected rows where the count should be reduced
+    # TODO This may lead to problems if $type is a factor
+    index <- which(local_densities$type == this_type)
+    # subtract one in the rows that represent the same type as the current one
+    local_densities[index, col] <- local_densities[index, col] - 1
   }
 
+  # this part calculates the densities based on the area and the counts
   area <- pi * radius^2
-  col_list <- colnames(local_densities)
-  for (i in 5:ncol(local_densities)) {
-    col_list[i] <- substring(col_list[i],7)
-    col_list[i] <- paste0("density_", col_list[i])
-    for (j in 1:nrow(local_densities)) {
-      local_densities[j,i] <- local_densities[j,i] / area
-    }
+
+  # re-add the count_total column for easier looping
+  count_cols <- c(count_cols, "count_total")
+
+  for (col in count_cols) {
+    local_densities[, col] <- local_densities[, col] / area
   }
-  colnames(local_densities) <- col_list
+  # and rename:
+  colnames(local_densities) <- gsub("count_", "density_", colnames(local_densities))
+
 
   return(local_densities)
-
 }
