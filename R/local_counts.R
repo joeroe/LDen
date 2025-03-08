@@ -8,7 +8,8 @@
 #' specified radius of each point.
 #'
 #' @inheritParams distance_matrix
-#' @param radius *numeric*. The radius of what
+#' @param radius *numeric*. the radius of what constitues the
+#' "neighborhood" of each point
 #'
 #'
 #' @return a data.frame that includes the point location and
@@ -18,9 +19,10 @@
 #' @export
 #'
 #' @examples
-#'
-#' locations <- LDen::AZ_A1020_BLM
-#' local_counts <- local_counts(locations, radius = 2)
+#' \dontrun{
+#'   locations <- LDen::AZ_A1020_BLM
+#'   local_counts <- local_counts(locations, radius = 2)
+#' }
 #'
 local_counts <- function(location_data, radius) {
 

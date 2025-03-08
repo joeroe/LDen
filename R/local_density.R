@@ -1,11 +1,9 @@
 #' Calculate Local Density
 #'
-#' `local_density()` is a function that calls the local_count function,
+#' `local_density()` is a function that calls the [local_counts()] function,
 #' then calculates the area of the neighborhood defined by the specified
-#' radius. The local_density is the count divided by the area of the
-#' neighborhood. The function outputs a dataframe that includes the point
-#' location and type of each point, as well as the density of points of
-#' each type within the specified radius of each point.
+#' radius. The *local density* is the count divided by the area of the
+#' neighborhood.
 #'
 #' @seealso [local_counts()]
 #'
@@ -13,7 +11,10 @@
 #' @inheritParams distance_matrix
 #' @inheritParams local_counts
 #'
-#' @return
+#' @return a data.frame that includes the point location and type of
+#' each point, as well as the density of points of each type within
+#' the specified radius of each point.
+#'
 #' @export
 #'
 #' @examples

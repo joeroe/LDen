@@ -13,7 +13,8 @@
 #'
 #' @importFrom dplyr filter
 #'
-#' @return
+#' @return A data.frame containing the local density coefficients.
+#'
 #' @export
 #'
 #' @examples
