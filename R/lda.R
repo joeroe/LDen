@@ -11,8 +11,6 @@
 #' @inheritParams local_counts
 #' @inheritParams glb_density
 #'
-#' @importFrom dplyr filter
-#'
 #' @return A data.frame containing the local density coefficients.
 #'
 #' @export
@@ -31,7 +29,7 @@ lda <- function(location_data, radius, site_area) {
 
     for (i in 1:(length(type_list) + 1)) {
       if (i <= length(type_list)){
-        current_type <- dplyr::filter(densities, type == type_list[i])
+        current_type <- densities[densities$type == type_list[i], ]
         for (j in 1:(length(type_list) + 1)) {
           lda_matrix[i,j] <- round(mean(current_type[,j + 4]) / global_density[j], 2)
         }

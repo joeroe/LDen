@@ -8,8 +8,6 @@
 #' @inheritParams distance_matrix
 #' @param site_area *numeric*. total area of the site
 #'
-#' @importFrom dplyr filter
-#'
 #' @return
 #' @export
 #'
@@ -18,7 +16,7 @@ glb_density <- function(location_data, site_area) {
   type_list <- unique(location_data$type)
   type_list <- sort(type_list)
   calc_density <- function(artifact_type) {
-    temp <- dplyr::filter(location_data, type == artifact_type)
+    temp <- location_data[location_data$type == artifact_type, ]
     nrow(temp) / site_area
   }
 
@@ -31,4 +29,3 @@ glb_density <- function(location_data, site_area) {
 
   return(global_density)
 }
-
