@@ -26,7 +26,7 @@ glb_density <- function(location_data, site_area) {
   
   global_density[length(type_list) + 1] <- nrow(location_data) / site_area
   
-  global_density <-  as.data.frame(global_density)
+  global_density <-  as.matrix(global_density)
   row.names(global_density) <- c(type_list, "total")
   
   return(global_density)
