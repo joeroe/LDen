@@ -5,16 +5,17 @@
 #' distance is in the matrix twice, once from point A to point B,
 #' and again from point B to point A)
 #'
-#' @param location_data data.frame with three columns:
+#' @param location_data expects a data.frame with three columns:
 #' \describe{
 #'   \item{x}{Easting / x-coordinate of location}
 #'   \item{y}{Northing / y-coordinate of location}
-#'   \item{type}{Type of Evidence at location}
+#'   \item{type}{categorical variable for type of evidence at location}
 #' }
 #' @param x Index of column containing the x-coordinate
 #' @param y Index of column containing the y-coordinate
 #'
-#' @return
+#' @return A square matrix containing the distances between all points.
+#'
 #' @export
 #'
 #' @examples

@@ -7,22 +7,26 @@
 local_density(location_data, radius)
 }
 \arguments{
-\item{location_data}{data.frame with three columns:
+\item{location_data}{expects a data.frame with three columns:
 \describe{
 \item{x}{Easting / x-coordinate of location}
 \item{y}{Northing / y-coordinate of location}
-\item{type}{Type of Evidence at location}
+\item{type}{categorical variable for type of evidence at location}
 }}
 
-\item{radius}{\emph{numeric}. The radius of what}
+\item{radius}{\emph{numeric}. the radius of what constitues the
+"neighborhood" of each point}
+}
+\value{
+a data.frame that includes the point location and type of
+each point, as well as the density of points of each type within
+the specified radius of each point.
 }
 \description{
-\code{local_density()} is a function that calls the local_count function,
+\code{local_density()} is a function that calls the \code{\link[=local_counts]{local_counts()}} function,
 then calculates the area of the neighborhood defined by the specified
-radius. The local_density is the count divided by the area of the
-neighborhood. The function outputs a dataframe that includes the point
-location and type of each point, as well as the density of points of
-each type within the specified radius of each point.
+radius. The \emph{local density} is the count divided by the area of the
+neighborhood.
 }
 \seealso{
 \code{\link[=local_counts]{local_counts()}}

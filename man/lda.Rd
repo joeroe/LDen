@@ -7,16 +7,20 @@
 lda(location_data, radius, site_area)
 }
 \arguments{
-\item{location_data}{data.frame with three columns:
+\item{location_data}{expects a data.frame with three columns:
 \describe{
 \item{x}{Easting / x-coordinate of location}
 \item{y}{Northing / y-coordinate of location}
-\item{type}{Type of Evidence at location}
+\item{type}{categorical variable for type of evidence at location}
 }}
 
-\item{radius}{\emph{numeric}. The radius of what}
+\item{radius}{\emph{numeric}. the radius of what constitues the
+"neighborhood" of each point}
 
-\item{site_area}{}
+\item{site_area}{\emph{numeric}. total area of the site}
+}
+\value{
+A data.frame containing the local density coefficients.
 }
 \description{
 \code{lda()} calculates the local density coefficient within and between

@@ -7,18 +7,18 @@
 glb_density(location_data, site_area)
 }
 \arguments{
-\item{location_data}{data.frame with three columns:
+\item{location_data}{expects a data.frame with three columns:
 \describe{
 \item{x}{Easting / x-coordinate of location}
 \item{y}{Northing / y-coordinate of location}
-\item{type}{Type of Evidence at location}
+\item{type}{categorical variable for type of evidence at location}
 }}
 
-\item{site_area}{}
+\item{site_area}{\emph{numeric}. total area of the site}
 }
 \description{
 \code{glb_density()} calculates the global density of points of each type
 (the number of points of the type divided by the total area)
 and returns a vector of the global densities that gets used by the
-\code{\link[=lda]{lda()}} function to calculate the local density coefficient
+\code{\link[=lda]{lda()}} function to calculate the local density coefficient.
 }

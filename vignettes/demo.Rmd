@@ -5,6 +5,8 @@ vignette: >
   %\VignetteIndexEntry{demo}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: ../inst/references.bib
+
 ---
 
 ```{r, include = FALSE}
@@ -19,6 +21,10 @@ library(LDen)
 ```
 
 The data should be formatted as a data frame of artifact locations with x coordinates in the first column, y coordinates in the second, and artifact type in the third column.
+
+
+citing references: [@Johnson1976], [@johnson1984], [@kintigh1990]
+
 
 ```{r load data}
 locations <- LDen::AZ_A1020_BLM
@@ -71,4 +77,4 @@ lda_test <- lda(locations, radius = cbind(1,2,5), site_area = 2409)
 head(lda_test)
 ```
 
-
+# References

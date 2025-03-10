@@ -7,16 +7,19 @@
 distance_matrix(location_data, x = 1, y = 2)
 }
 \arguments{
-\item{location_data}{data.frame with three columns:
+\item{location_data}{expects a data.frame with three columns:
 \describe{
 \item{x}{Easting / x-coordinate of location}
 \item{y}{Northing / y-coordinate of location}
-\item{type}{Type of Evidence at location}
+\item{type}{categorical variable for type of evidence at location}
 }}
 
 \item{x}{Index of column containing the x-coordinate}
 
 \item{y}{Index of column containing the y-coordinate}
+}
+\value{
+A square matrix containing the distances between all points.
 }
 \description{
 The distance_matrix function finds the difference from each point to

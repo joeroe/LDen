@@ -7,14 +7,15 @@
 local_counts(location_data, radius)
 }
 \arguments{
-\item{location_data}{data.frame with three columns:
+\item{location_data}{expects a data.frame with three columns:
 \describe{
 \item{x}{Easting / x-coordinate of location}
 \item{y}{Northing / y-coordinate of location}
-\item{type}{Type of Evidence at location}
+\item{type}{categorical variable for type of evidence at location}
 }}
 
-\item{radius}{\emph{numeric}. The radius of what}
+\item{radius}{\emph{numeric}. the radius of what constitues the
+"neighborhood" of each point}
 }
 \value{
 a data.frame that includes the point location and
@@ -30,8 +31,9 @@ type of each point, as well as counts (by type) of points within the
 specified radius of each point.
 }
 \examples{
-
-locations <- LDen::AZ_A1020_BLM
-local_counts <- local_counts(locations, radius = 2)
+\dontrun{
+  locations <- LDen::AZ_A1020_BLM
+  local_counts <- local_counts(locations, radius = 2)
+}
 
 }
