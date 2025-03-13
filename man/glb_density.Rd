@@ -4,7 +4,7 @@
 \alias{glb_density}
 \title{Calculate Global Density}
 \usage{
-glb_density(location_data, site_area)
+glb_density(location_data, x = 1, y = 2, site_area)
 }
 \arguments{
 \item{location_data}{expects a data.frame with three columns:
@@ -13,6 +13,10 @@ glb_density(location_data, site_area)
 \item{y}{Northing / y-coordinate of location}
 \item{type}{categorical variable for type of evidence at location}
 }}
+
+\item{x}{Index of column containing the x-coordinate}
+
+\item{y}{Index of column containing the y-coordinate}
 
 \item{site_area}{\emph{numeric}. total area of the site}
 }

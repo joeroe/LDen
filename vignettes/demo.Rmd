@@ -31,13 +31,6 @@ locations <- LDen::AZ_A1020_BLM
 head(locations)
 ```
 
-# Distance matrix from location data
-
-```{r create distance matrix}
-distance_test <- distance_matrix(location_data = locations)
-head(distance_test, n = c(7, 7))
-```
-
 # Local Counts
 
 ```{r local counts}

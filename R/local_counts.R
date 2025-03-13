@@ -7,7 +7,14 @@
 #' type of each point, as well as counts (by type) of points within the
 #' specified radius of each point.
 #'
-#' @inheritParams distance_matrix
+#' @param location_data expects a data.frame with three columns:
+#' \describe{
+#'   \item{x}{Easting / x-coordinate of location}
+#'   \item{y}{Northing / y-coordinate of location}
+#'   \item{type}{categorical variable for type of evidence at location}
+#' }
+#' @param x Index of column containing the x-coordinate
+#' @param y Index of column containing the y-coordinate
 #' @param radius *numeric*. the radius of what constitues the
 #' "neighborhood" of each point
 #'
@@ -24,11 +31,14 @@
 #'   local_counts <- local_counts(locations, radius = 2)
 #' }
 #'
-local_counts <- function(location_data, radius) {
+local_counts <- function(location_data, x = 1, y = 2, radius) {
 
+  stopifnot(all(is.numeric(location_data[,y]), is.numeric(location_data[,x])))
   stopifnot(is.numeric(radius))
 
-  distance <- LDen::distance_matrix(location_data = location_data)
+  # calculate distance matrix
+  distance <- as.matrix(stats::dist(location_data[,c(x,y)], method = "euclidean"))
+
   output <- location_data
   output$radius <- radius
 

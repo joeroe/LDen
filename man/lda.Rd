@@ -4,7 +4,7 @@
 \alias{lda}
 \title{LDA: Local Density ...?}
 \usage{
-lda(location_data, radius, site_area)
+lda(location_data, x = 1, y = 2, radius, site_area)
 }
 \arguments{
 \item{location_data}{expects a data.frame with three columns:
@@ -13,6 +13,10 @@ lda(location_data, radius, site_area)
 \item{y}{Northing / y-coordinate of location}
 \item{type}{categorical variable for type of evidence at location}
 }}
+
+\item{x}{Index of column containing the x-coordinate}
+
+\item{y}{Index of column containing the y-coordinate}
 
 \item{radius}{\emph{numeric}. the radius of what constitues the
 "neighborhood" of each point}

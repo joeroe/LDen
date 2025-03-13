@@ -8,7 +8,6 @@
 #' @seealso [local_counts()]
 #'
 #'
-#' @inheritParams distance_matrix
 #' @inheritParams local_counts
 #'
 #' @return a data.frame that includes the point location and type of
@@ -18,8 +17,8 @@
 #' @export
 #'
 #' @examples
-local_density <- function(location_data, radius) {
-  counts <- local_counts(location_data, radius)
+local_density <- function(location_data, x = 1, y = 2, radius) {
+  counts <- local_counts(location_data, radius = radius)
   local_densities <- counts
 
   # prep a vector of columns needed in the following operations:

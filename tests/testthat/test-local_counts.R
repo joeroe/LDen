@@ -17,7 +17,7 @@ LDen1_out <- data.frame(
 )
 
 test_that("testdata identical for radius 1", {
-  lcount <- local_counts(test_locs, 1)
+  lcount <- local_counts(test_locs, radius = 1)
   lcount$radius <- NULL
 
   LDen1_out <- LDen1_out[, colnames(lcount)]
@@ -43,7 +43,7 @@ LDen2_out <- data.frame(
 )
 
 test_that("testdata identical for radius 2", {
-  lcount <- local_counts(test_locs, 2)
+  lcount <- local_counts(test_locs, radius = 2)
   lcount$radius <- NULL
 
   LDen2_out <- LDen2_out[, colnames(lcount)]
@@ -69,7 +69,7 @@ LDen5_out <- data.frame(
 )
 
 test_that("testdata identica for radius 5", {
-  lcount <- local_counts(test_locs, 5)
+  lcount <- local_counts(test_locs, radius = 5)
   lcount$radius <- NULL
 
   LDen5_out <- LDen5_out[, colnames(lcount)]

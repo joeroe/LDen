@@ -14,7 +14,7 @@ res <- data.frame(
 rownames(res) <- c(0, 2, 4, 10, 11, 12, 13)
 
 test_that("result is equal to 'old' output with radius 1", {
-  local_density <- lda(test_locs, 1, 154)
+  local_density <- lda(test_locs, radius = 1, site_area = 154)
   rownames(local_density) <- local_density$type
   local_density <- local_density[rownames(res), ]
   local_density <- local_density[, colnames(res)]
@@ -38,7 +38,7 @@ rownames(res) <- c(0, 2, 4, 10, 11, 12, 13)
 # copied from the file "LDEN.TXT",
 # Points 16    Area 154.00    Radius 5.00
 test_that("result is equal to 'old' output with radius 2", {
-  local_density <- lda(test_locs, 2, 154)
+  local_density <- lda(test_locs, radius = 2, site_area = 154)
   rownames(local_density) <- local_density$type
   local_density <- local_density[rownames(res), ]
   local_density <- local_density[, colnames(res)]
@@ -58,7 +58,7 @@ res <- data.frame(
 rownames(res) <- c(0, 2, 4, 10, 11, 12, 13)
 
 test_that("result is equal to 'old' output with radius 5", {
-  local_density <- lda(test_locs, 5, 154)
+  local_density <- lda(test_locs, radius = 5, site_area = 154)
   rownames(local_density) <- local_density$type
   local_density <- local_density[rownames(res), ]
   local_density <- local_density[, colnames(res)]

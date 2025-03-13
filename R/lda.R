@@ -7,7 +7,6 @@
 #' density of points of Type B (i.e., the number of points of
 #' Type B divided by the total area)
 #'
-#' @inheritParams distance_matrix
 #' @inheritParams local_counts
 #' @inheritParams glb_density
 #'
@@ -16,12 +15,12 @@
 #' @export
 #'
 #' @examples
-lda <- function(location_data, radius, site_area) {
+lda <- function(location_data, x = 1, y = 2, radius, site_area) {
   for (n in 1:length(radius)) {
-    densities <- local_density(location_data, radius[n])
+    densities <- local_density(location_data, radius = radius[n])
     type_list <- unique(location_data$type)
     type_list <- sort(type_list)
-    global_density <- glb_density(location_data, site_area)
+    global_density <- glb_density(location_data, site_area = site_area)
     lda_matrix <- matrix(nrow = length(type_list) + 1, ncol = length(type_list) + 2)
     name_list <- c(as.character(type_list), "total")
     name_list_col <- c(paste0("ldc_", name_list), "radius")
