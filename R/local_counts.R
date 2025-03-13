@@ -53,14 +53,59 @@ local_counts <- function(location_data, x = 1, y = 2, radius) {
     })
   })
 
-  # find the total count of neighboring artifacts
-  total_neighbour_count <- apply(distance, 1, function(one_row) {
-    sum(one_row <= radius)
-  })
-
+  # reshape to named columns
   output <- cbind(output, neighbor_counts_per_type)
   colnames(output)[(ncol(output)-num_types+1):ncol(output)] <- paste0("count_", as.character(type_list))
-  output$count_total <- total_neighbour_count
+
+  # add total count of neighboring artifacts
+  output$count_total <- local_count(location_data[,x], location_data[,y], radius)
 
   return(output)
+}
+
+#' Count points within a radius
+#'
+#' For a vector of points specified by x and y coordinates, calculates the
+#' number of points within the given radius.
+#' 
+#' @param x, y Equal-length numeric vectors of coordinates
+#' @param radius Size of the neighbourhood
+#' 
+#' @return Numeric vector the same length as `x` and `y` with the number of
+#' points within the specified radius of each point (counting the point itself,
+#' so always >=1).
+#'
+#' @export
+#'
+#' @examples
+#' local_count(AZ_A1020_BLM$x, AZ_A1020_BLM$y, radius = 2)
+local_count <- function(x, y, radius) {
+  stopifnot(is.numeric(radius))
+  rowSums(dist_matrix(x, y) <= radius)
+}
+
+#' Distance matrix for two vectors of coordinates
+#'
+#' @return A matrix, see [stats::as.matrix.dist()].
+#' 
+#' @param x, y Equal-length numeric vectors of coordinates
+#' @param method Passed to [stats::dist()]
+#'
+#' @noRd
+#' @keywords internal
+dist_matrix <- function(x, y, method = "euclidean") {
+  coords <- coord_matrix(x, y)
+  as.matrix(stats::dist(coords, method))
+}
+
+#' Convert two vectors of coordinates into a 2-column matrix
+#'
+#' @param x, y Equal-length numeric vectors of coordinates
+#'
+#' @noRd
+#' @keywords internal
+coord_matrix <- function(x, y) {
+  stopifnot(is.numeric(x) & is.numeric(y))
+  stopifnot(length(x) == length(y))
+  matrix(c(x, y), ncol = 2)
 }

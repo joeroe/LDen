@@ -2,5 +2,6 @@
 
 export(glb_density)
 export(lda)
+export(local_count)
 export(local_counts)
 export(local_density)
