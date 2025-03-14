@@ -1,4 +1,4 @@
-#' Points within a radius
+#' Local point counts and density
 #'
 #' For a vector of points specified by x and y coordinates, `local_count()`
 #' calculates the number of points within the given radius. `local_density()`

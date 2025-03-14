@@ -5,7 +5,7 @@
 \alias{local_density}
 \alias{local_count2}
 \alias{local_density2}
-\title{Points within a radius}
+\title{Local point counts and density}
 \usage{
 local_count(x, y, radius)
 
