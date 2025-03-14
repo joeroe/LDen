@@ -63,31 +63,40 @@ local_counts <- function(location_data, x = 1, y = 2, radius) {
   return(output)
 }
 
-#' Count points within a radius
+#' Points within a radius
 #'
-#' For a vector of points specified by x and y coordinates, calculates the
-#' number of points within the given radius.
-#' 
+#' For a vector of points specified by x and y coordinates, `local_count()`
+#' calculates the number of points within the given radius. `local_density()`
+#' returns the density of points, i.e. the count divided by the area of a circle
+#' with the given radius.
+#'
 #' @param x, y Equal-length numeric vectors of coordinates
 #' @param radius Size of the neighbourhood
-#' 
-#' @return Numeric vector the same length as `x` and `y` with the number of
-#' points within the specified radius of each point (counting the point itself,
-#' so always >=1).
+#'
+#' @return Numeric vector the same length as `x` and `y` with the number
+#' (counting the point itself, so always >=1) or density points within the
+#' specified radius of each point.
 #'
 #' @export
 #'
 #' @examples
 #' local_count(AZ_A1020_BLM$x, AZ_A1020_BLM$y, radius = 2)
+#' local_density(AZ_A1020_BLM$x, AZ_A1020_BLM$y, radius = 2)
 local_count <- function(x, y, radius) {
   stopifnot(is.numeric(radius))
   rowSums(dist_matrix(x, y) <= radius)
 }
 
+#' @rdname local_count
+#' @export
+local_density <- function(x, y, radius) {
+  local_count(x, y, radius) / (pi * radius^2)
+}
+
 #' Distance matrix for two vectors of coordinates
 #'
 #' @return A matrix, see [stats::as.matrix.dist()].
-#' 
+#'
 #' @param x, y Equal-length numeric vectors of coordinates
 #' @param method Passed to [stats::dist()]
 #'

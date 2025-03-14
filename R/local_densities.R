@@ -1,6 +1,6 @@
-#' Calculate Local Density
+#' Calculate Local Densities
 #'
-#' `local_density()` is a function that calls the [local_counts()] function,
+#' `local_densities()` is a function that calls the [local_counts()] function,
 #' then calculates the area of the neighborhood defined by the specified
 #' radius. The *local density* is the count divided by the area of the
 #' neighborhood.
@@ -17,7 +17,7 @@
 #' @export
 #'
 #' @examples
-local_density <- function(location_data, x = 1, y = 2, radius) {
+local_densities <- function(location_data, x = 1, y = 2, radius) {
   counts <- local_counts(location_data, radius = radius)
   local_densities <- counts
 

@@ -41,7 +41,7 @@ head(counts_test)
 # Local Density
 
 ```{r local density}
-local_density_test <- local_density(locations, radius = 2)
+local_density_test <- local_densities(locations, radius = 2)
 head(local_density_test)
 ```
 

@@ -17,7 +17,7 @@
 #' @examples
 lda <- function(location_data, x = 1, y = 2, radius, site_area) {
   for (n in 1:length(radius)) {
-    densities <- local_density(location_data, radius = radius[n])
+    densities <- local_densities(location_data, radius = radius[n])
     type_list <- unique(location_data$type)
     type_list <- sort(type_list)
     global_density <- glb_density(location_data, site_area = site_area)

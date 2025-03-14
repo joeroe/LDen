@@ -2,9 +2,12 @@
 % Please edit documentation in R/local_counts.R
 \name{local_count}
 \alias{local_count}
-\title{Count points within a radius}
+\alias{local_density}
+\title{Points within a radius}
 \usage{
 local_count(x, y, radius)
+
+local_density(x, y, radius)
 }
 \arguments{
 \item{x, }{y Equal-length numeric vectors of coordinates}
@@ -12,14 +15,17 @@ local_count(x, y, radius)
 \item{radius}{Size of the neighbourhood}
 }
 \value{
-Numeric vector the same length as \code{x} and \code{y} with the number of
-points within the specified radius of each point (counting the point itself,
-so always >=1).
+Numeric vector the same length as \code{x} and \code{y} with the number
+(counting the point itself, so always >=1) or density points within the
+specified radius of each point.
 }
 \description{
-For a vector of points specified by x and y coordinates, calculates the
-number of points within the given radius.
+For a vector of points specified by x and y coordinates, \code{local_count()}
+calculates the number of points within the given radius. \code{local_density()}
+returns the density of points, i.e. the count divided by the area of a circle
+with the given radius.
 }
 \examples{
 local_count(AZ_A1020_BLM$x, AZ_A1020_BLM$y, radius = 2)
+local_density(AZ_A1020_BLM$x, AZ_A1020_BLM$y, radius = 2)
 }
