@@ -23,9 +23,10 @@ local_density2(x1, y1, x2, y2, radius)
 \item{x1, x2, y1, y2}{Equal-length numeric vectors of coordinates (for two-sample versions)}
 }
 \value{
-Numeric vector the same length as \code{x} with the number (counting the
-point itself, so always >=1) or density points within the specified radius of
-each point.
+Numeric vector the same length as \code{x} with the number or density of
+points within the specified radius of each point. In the one sample case,
+the count includes the origin point (and thus is always >= 1) but the
+density does not.
 }
 \description{
 For a vector of points specified by x and y coordinates, \code{local_count()}

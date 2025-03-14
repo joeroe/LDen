@@ -13,9 +13,10 @@
 #' @param x1,x2,y1,y2 Equal-length numeric vectors of coordinates (for two-sample versions)
 #' @param radius Size of the neighbourhood
 #'
-#' @return Numeric vector the same length as `x` with the number (counting the
-#' point itself, so always >=1) or density points within the specified radius of
-#' each point.
+#' @return Numeric vector the same length as `x` with the number or density of 
+#' points within the specified radius of each point. In the one sample case,
+#' the count includes the origin point (and thus is always >= 1) but the 
+#' density does not.
 #'
 #' @export
 #'
@@ -30,7 +31,7 @@ local_count <- function(x, y, radius) {
 #' @rdname local_count
 #' @export
 local_density <- function(x, y, radius) {
-  local_count(x, y, radius) / (pi * radius^2)
+  (local_count(x, y, radius) - 1) / (pi * radius^2)
 }
 
 #' @rdname local_count
