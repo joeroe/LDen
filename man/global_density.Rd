@@ -9,7 +9,8 @@ global_density(x, y, area = NULL)
 \arguments{
 \item{x, y}{Equal-length numeric vectors of coordinates}
 
-\item{area}{Total area of the window}
+\item{area}{Total area of the window. If \code{NULL}, inferred as the area of the
+bounding box of the coordinates specified by \code{x} and \code{y}.}
 }
 \value{
 Number of points divided by area
@@ -20,4 +21,5 @@ to the total size of the window or study region (e.g. the site or trench).
 }
 \examples{
 global_density(AZ_A1020_BLM$x, AZ_A1020_BLM$y, area = 2409)
+global_density(AZ_A1020_BLM$x, AZ_A1020_BLM$y)
 }
