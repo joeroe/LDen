@@ -10,7 +10,7 @@ local_count(x, y, radius)
 local_density(x, y, radius)
 }
 \arguments{
-\item{x, }{y Equal-length numeric vectors of coordinates}
+\item{x, y}{Equal-length numeric vectors of coordinates}
 
 \item{radius}{Size of the neighbourhood}
 }

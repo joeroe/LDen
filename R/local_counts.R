@@ -70,7 +70,7 @@ local_counts <- function(location_data, x = 1, y = 2, radius) {
 #' returns the density of points, i.e. the count divided by the area of a circle
 #' with the given radius.
 #'
-#' @param x, y Equal-length numeric vectors of coordinates
+#' @param x,y Equal-length numeric vectors of coordinates
 #' @param radius Size of the neighbourhood
 #'
 #' @return Numeric vector the same length as `x` and `y` with the number
