@@ -58,7 +58,7 @@ head(global_density_test)
 # Single Radius
 
 ```{r lda single rad}
-lda_test <- lda(locations$x, locations$y, locations$type, radius = 2, area = 2409)
+lda_test <- lda(locations, type = locations$type, radius = 2, area = 2409)
 head(lda_test)
 ```
 

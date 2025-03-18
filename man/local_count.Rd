@@ -3,24 +3,20 @@
 \name{local_count}
 \alias{local_count}
 \alias{local_density}
-\alias{local_count2}
-\alias{local_density2}
 \title{Local point counts and density}
 \usage{
-local_count(x, y, radius)
+local_count(x, y = NULL, radius)
 
-local_density(x, y, radius)
-
-local_count2(x1, y1, x2, y2, radius)
-
-local_density2(x1, y1, x2, y2, radius)
+local_density(x, y = NULL, radius)
 }
 \arguments{
-\item{x, y}{Equal-length numeric vectors of coordinates}
+\item{x}{Coordinates specified as a two-column data frame, matrix, or list
+of equal-length vectors}
+
+\item{y}{For the two-sample case, coordinates of points to count, in the same
+format as \code{x}. Set \code{NULL} (the default) for the one-sample case.}
 
 \item{radius}{Size of the neighbourhood}
-
-\item{x1, x2, y1, y2}{Equal-length numeric vectors of coordinates (for two-sample versions)}
 }
 \value{
 Numeric vector the same length as \code{x} with the number or density of
@@ -40,6 +36,6 @@ calculating the count of density of points in y within the specified radius
 of points in x.
 }
 \examples{
-local_count(AZ_A1020_BLM$x, AZ_A1020_BLM$y, radius = 2)
-local_density(AZ_A1020_BLM$x, AZ_A1020_BLM$y, radius = 2)
+local_count(AZ_A1020_BLM, radius = 2)
+local_density(AZ_A1020_BLM, radius = 2)
 }

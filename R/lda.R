@@ -9,7 +9,7 @@
 #'
 #' @inheritParams local_count
 #' @inheritParams global_density
-#' @param type Vector the same length as `x` and `y` giving the types or other
+#' @param type Vector the same length as `x` giving the types or other 
 #'   categorical variable to construct sets for pairwise comparison.
 #' 
 #' @return A data.frame containing the local density coefficients.
@@ -17,18 +17,19 @@
 #' @export
 #'
 #' @examples
-#' lda(AZ_A1020_BLM$x, AZ_A1020_BLM$y, AZ_A1020_BLM$type, radius = 2, area = 2049)
-lda <- function(x, y, type, radius, area = NULL) {
-  dat <- data.frame(x = x, y = y, type = type)
+#' lda(AZ_A1020_BLM, type = AZ_A1020_BLM$type, radius = 2, area = 2049)
+lda <- function(x, type, radius, area = NULL) {
+  coords <- coord_matrix(x)
+  dat <- data.frame(x = coords[,1], y = coords[,2], type = type)
   dat <- split(dat, ~type)
 
   # For each combination of types...
   res <- lapply(dat, function(subdat, dat, r, a) {
     lapply(dat, function(daty, datx, r, a) {
       # Calculate two-sample local densities
-      ldens <- local_density2(datx$x, datx$y, daty$x, daty$y, radius = r)
+      ldens <- local_density(datx, daty, radius = r)
       # Return mean density divided by global density of the second type
-      mean(ldens) / global_density(daty$x, daty$y, area = a)
+      mean(ldens) / global_density(daty, area = a)
     }, datx = subdat, r = r, a = a)
   }, dat = dat, r = radius, a = area)
 
@@ -39,8 +40,8 @@ lda <- function(x, y, type, radius, area = NULL) {
   # its own neighbourhood)
   # TODO: questioning, see https://github.com/jallison7/LDen/issues/10
   diag(res) <- vapply(dat, function(subdat, r, a) {
-    ldens <- local_density(subdat$x, subdat$y, radius = r)
-    mean(ldens) / global_density(subdat$x, subdat$y, area = a)
+    ldens <- local_density(subdat, radius = r)
+    mean(ldens) / global_density(subdat, area = a)
   }, numeric(1), r = radius, a = area)
 
   # TODO: return as long data frame?

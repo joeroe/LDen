@@ -58,7 +58,7 @@ local_counts <- function(location_data, x = 1, y = 2, radius) {
   colnames(output)[(ncol(output)-num_types+1):ncol(output)] <- paste0("count_", as.character(type_list))
 
   # add total count of neighboring artifacts
-  output$count_total <- local_count(location_data[,x], location_data[,y], radius)
+  output$count_total <- local_count(location_data, radius = radius)
 
   return(output)
 }

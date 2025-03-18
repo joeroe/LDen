@@ -4,12 +4,13 @@
 \alias{lda}
 \title{Local Density Analysis}
 \usage{
-lda(x, y, type, radius, area = NULL)
+lda(x, type, radius, area = NULL)
 }
 \arguments{
-\item{x, y}{Equal-length numeric vectors of coordinates}
+\item{x}{Coordinates specified as a two-column data frame, matrix, or list
+of equal-length vectors}
 
-\item{type}{Vector the same length as \code{x} and \code{y} giving the types or other
+\item{type}{Vector the same length as \code{x} giving the types or other
 categorical variable to construct sets for pairwise comparison.}
 
 \item{radius}{Size of the neighbourhood}
@@ -29,5 +30,5 @@ density of points of Type B (i.e., the number of points of
 Type B divided by the total area)
 }
 \examples{
-lda(AZ_A1020_BLM$x, AZ_A1020_BLM$y, AZ_A1020_BLM$type, radius = 2, area = 2049)
+lda(AZ_A1020_BLM, type = AZ_A1020_BLM$type, radius = 2, area = 2049)
 }
