@@ -10,3 +10,12 @@ test_that("association() matches TFQA's HOA", {
     0.83
   )
 })
+
+test_that("dispersion() matches TFQA's HOA", {
+  hoa_test_type2 <- hoa_test[hoa_test$type == 2,]
+  hoa_test_type4 <- hoa_test[hoa_test$type == 4,]
+  expect_equal(
+    round(dispersion(hoa_test_type2, hoa_test_type4), 2), # TFQA rounds
+    1.76
+  )
+})
